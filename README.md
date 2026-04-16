@@ -10,10 +10,15 @@ WRDS is a world-leading and authoritative integrated data analysis platform for 
 Methods (main Python steps):
 
 1. Import the packages we will use in Jupyter Notebook. Import the official WRDS Python package, import the Pandas library, and import the NumPy library.
+ 
 2. Create the WRDS Connection.
+ 
 3. Define the parameters we want to change easily later. Simply modify the target_companies list to add or replace the target stock tickers. Adjust start_year and end_year to cover the desired time range.
+
 4. Extract data from WRDS Compustat by using SQL query. Extract financial indicators for specified companies and years from comp.funda (Compustat Annual Financial Database) on WRDS. Rename fields using the AS keyword to improve readability. f-string (f""" """): A Python string formatting syntax used for dynamically concatenating SQL statements. db.raw_sql(query) is the core method of the WRDS connection package, used to execute SQL queries and return a structured DataFrame.
+
 5. Calculate the financial ratios. df['Column Name'] = df['Column A'] / df['Column B']: Uses Pandas vectorized operations to calculate financial ratios in batches. df.dropna(subset=[List of Column Names]): Drops rows containing missing values in the specified columns to ensure the integrity of financial ratio calculation results. display(result_df): A built-in function of Jupyter Notebook that displays the DataFrame contents in a tabular format.
+
 6. Save as Excel. df.to_excel(file_name, index=False): An export method in Pandas that saves a DataFrame as an Excel file. index=False means not saving the row index. db.close(): Closes the WRDS database connection and releases resources.
 
 Key Findings: This product uses three U.S. semiconductor companies as examples. NVIDIA achieved explosive growth driven by its AI chip business. Its net profit margin rose from 25.98% in 2020 to 55.85% in 2024, ROE reached 91.87%, and EBITDA surged by more than 13 times. AMD’s profitability fluctuated with industry cycles: its net profit margin was only 3.77% in 2023 and rebounded slightly in 2024. Micron, with a strong focus on memory chips, suffered a loss with a net profit margin of 37.53% in 2023 but returned to profitability in 2024. The AI chip sector (NVIDIA) outperformed the semiconductor cycle, while the memory chip sector (AMD / Micron) was significantly affected by economic cycles, resulting in much higher earnings volatility.
